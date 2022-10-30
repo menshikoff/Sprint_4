@@ -19,7 +19,10 @@ public class MainPage {
     private By topOrderButton = By.className("Button_Button__ra12g");
     //Нижняя кнопка заказа
     private By middleOrderButton = By.xpath(".//button[contains(@class, 'Button_Middle__1CSJM')]");
-
+    //Лого "Самокат"
+    private By logoSamokatOnMainPage = By.className("Header_LogoScooter__3lsAR");
+    //Заголовок гглавной страницы
+    private By headerMainPage = By.className("Home_Header__iJKdX");
     public MainPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -49,5 +52,11 @@ public class MainPage {
             scrollToTheSectionFaq();
             driver.findElement(middleOrderButton).click();}
         return driver;
+    }
+    public void pushLogoSamokat() {
+        driver.findElement(logoSamokatOnMainPage).click();
+    }
+    public boolean isMainPageVisible() {
+        return driver.findElement(headerMainPage).isDisplayed();
     }
 }
