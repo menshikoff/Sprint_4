@@ -45,8 +45,8 @@ public class TestCorrectnessOfOderPlacement {
     @Test
     public void testOderPlacementFunction() {
         MainPage objMainPage = new MainPage(browserRule.getDriver());
-        OrderForm objOrderForm = new OrderForm(objMainPage.open().openOrderForm(buttonMakeOrder));
-
+        OrderForm objOrderForm = new OrderForm(objMainPage.open().pushButtonAcceptCookies()
+                                                                    .openOrderForm(buttonMakeOrder));
         //Заполняет раздел "Для кого самокат"
         objOrderForm.fillInName(clientName);
         objOrderForm.fillInFamilyName(clientFamilyName);
@@ -62,11 +62,7 @@ public class TestCorrectnessOfOderPlacement {
         objOrderForm.tickColourSamokatCheckBox();
         objOrderForm.pushButtonOrder();
         objOrderForm.pushButtonYesToConfirmOrder();
-        try {
-            Thread.sleep(5_000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+
         Assert.assertTrue(objOrderForm.getHeaderOrderIsComplete().getText().contains("Заказ оформлен"));
 
     }

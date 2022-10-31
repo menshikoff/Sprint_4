@@ -18,11 +18,13 @@ public class MainPage {
     //Верхняя кнопка заказа
     private By topOrderButton = By.className("Button_Button__ra12g");
     //Нижняя кнопка заказа
-    private By middleOrderButton = By.xpath(".//button[contains(@class, 'Button_Middle__1CSJM')]");
+    private By middleOrderButton = By.xpath(".//div[@class='Home_FinishButton__1_cWm']/button");
     //Лого "Самокат"
     private By logoSamokatOnMainPage = By.className("Header_LogoScooter__3lsAR");
-    //Заголовок гглавной страницы
+    //Заголовок главной страницы
     private By headerMainPage = By.className("Home_Header__iJKdX");
+    //Кнопка согласия на куки
+    private By buttonAcceptCookies = By.id("rcc-confirm-button");
     public MainPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -46,7 +48,7 @@ public class MainPage {
         return driver.findElements(answerPanelFromListOfQuestions).get(number).getText();
     }
     public WebDriver openOrderForm(String button) {
-        if (button == "top") {
+        if (button.equals("top")) {
         driver.findElement(topOrderButton).click();}
         else {
             scrollToTheSectionFaq();
@@ -58,5 +60,9 @@ public class MainPage {
     }
     public boolean isMainPageVisible() {
         return driver.findElement(headerMainPage).isDisplayed();
+    }
+    public MainPage pushButtonAcceptCookies() {
+        driver.findElement(buttonAcceptCookies).click();
+        return this;
     }
 }

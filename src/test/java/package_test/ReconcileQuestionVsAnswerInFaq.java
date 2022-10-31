@@ -13,13 +13,13 @@ import pom.MainPage;
 public class ReconcileQuestionVsAnswerInFaq {
 
     private final int numberOfQuestionAndAnswer;
-    private final String ExpectedTextOfAnswer;
+    private final String expectedTextOfAnswer;
     @Rule
     public BrowserRule browserRule = new BrowserRule();
 
     public ReconcileQuestionVsAnswerInFaq (int number, String text) {
         this.numberOfQuestionAndAnswer = number;
-        this.ExpectedTextOfAnswer = text;
+        this.expectedTextOfAnswer = text;
     }
 
     @Parameterized.Parameters
@@ -48,10 +48,11 @@ public class ReconcileQuestionVsAnswerInFaq {
         MainPage objMainPage = new MainPage(browserRule.getDriver());
         objMainPage
                 .open()
+                .pushButtonAcceptCookies()
                 .scrollToTheSectionFaq()
                 .pushQuestionPanelFromListOfQuestions(numberOfQuestionAndAnswer);
 
-        Assert.assertEquals(ExpectedTextOfAnswer, objMainPage.getTextOfAnswerOnQuestion(numberOfQuestionAndAnswer));
+        Assert.assertEquals(expectedTextOfAnswer, objMainPage.getTextOfAnswerOnQuestion(numberOfQuestionAndAnswer));
 
     }
 }

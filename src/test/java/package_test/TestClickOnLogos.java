@@ -4,11 +4,7 @@ import main.BrowserRule;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pom.MainPage;
-
-import java.time.Duration;
 
 public class TestClickOnLogos {
 
@@ -18,9 +14,13 @@ public class TestClickOnLogos {
     public BrowserRule browserRule = new BrowserRule();
 
     @Test
-    public void testClickOnLogoSmokatLinkToMainPage() {
+    public void testClickOnLogoSamokatLinkToMainPage() {
         MainPage objMainPage = new MainPage(browserRule.getDriver());
-        objMainPage.open().openOrderForm(buttonMakeOrder);
+        objMainPage
+                .open()
+                .pushButtonAcceptCookies()
+                .openOrderForm(buttonMakeOrder);
+
         objMainPage.pushLogoSamokat();
 
         Assert.assertTrue(objMainPage.isMainPageVisible());
