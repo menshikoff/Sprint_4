@@ -18,8 +18,8 @@ public class BrowserRule extends ExternalResource {
     @Override
     protected void before() throws Throwable {
 
-        driver = new FirefoxDriver();
-        //driver = new ChromeDriver();
+        //driver = new FirefoxDriver();
+        driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
